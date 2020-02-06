@@ -1,11 +1,9 @@
 <template>
   <div class="wrapper">
-    <AuthPopup v-if="!isAuthorized && !socket"
-               @toggleAuth="toggleSocketConnection" />
-    <div v-else
-         class="container__chat container">
-      <Sidebar :userInfo='userInfo' />
-      <ChatView :socket="socket" />
+    <AuthPopup v-if="!isAuthorized && !socket" @toggleAuth="toggleSocketConnection" />
+    <div v-else class="container__chat container">
+      <Sidebar :userInfo="userInfo" />
+      <ChatView :socket="socket" :userInfo="userInfo"/>
     </div>
   </div>
 </template>

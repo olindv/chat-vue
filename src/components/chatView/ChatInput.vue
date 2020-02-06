@@ -33,7 +33,10 @@ export default {
         // nick: user.nick
       }
       this.socket.send(JSON.stringify(messageInfo))
+      this.$emit('mes', this.message)
       this.message = ''
+      // console.log(messageInfo)
+      // console.log(this.socket)
     }
   }
 }

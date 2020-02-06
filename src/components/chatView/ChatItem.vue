@@ -1,23 +1,34 @@
 <template>
-  <div class="message__item nickName">
-    <div class="photo__box">
-      <img class="user__img user__img--nickName"
-           src="#"
-           alt="">
-    </div>
-    <div class="message__content">
-      <div>
-        Dmitriy <b>26.01.2020</b>
+  <ul class="message__item nickName" >
+    <li v-for="(message, index) in messages" v-bind:key="index" class="message__elem" >
+      <div class="photo__box">
+        <img class="user__img user__img--nickName"
+            src="#"
+            alt="">
       </div>
-      <span class="text">Какой-то текст</span>
-    </div>
-  </div>
+      <div class="message__content">
+        <div>
+          {{userInfo.userName}} <b>26.01.2020</b>
+        </div>
+        <span class="text">{{message}}</span>
+      </div>
+    </li>
+  </ul>
 </template>
 
 <script>
 export default {
   name: 'chatItem',
-  components: {}
+  components: {},
+  props: {
+    messages: {
+      type: Array
+    },
+    userInfo: {
+      type: Object
+    }
+  },
+  methods: {}
 }
 </script>
 <style lang="scss" scoped>
@@ -39,21 +50,21 @@ export default {
 .message__content {
   font-size: 13px;
   margin-left: 10px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   background-color: lightslategrey;
   border-radius: 10px;
-  padding: 0 10px;
+  padding: 20px 10px;
   width: 100%;
+}
+.message__elem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 .message__item {
   margin-bottom: 15px;
   display: flex;
-  align-items: center;
-  /* width: 25%; */
-  max-width: 50%;
+  flex-direction: column;
+  width: 40%;
 }
 .message__item--current {
   align-self: flex-end;

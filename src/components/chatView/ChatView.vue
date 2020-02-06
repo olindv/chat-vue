@@ -1,10 +1,10 @@
 <template>
   <div class="col__right">
     <div class="messages__container">
-      <chatItem />
+      <chatItem  :messages="messages" :userInfo="userInfo"/>
     </div>
     <div class="message__generate">
-      <chatInput :socket="socket" />
+      <chatInput :socket="socket" @mes="rewriteMessage"/>
     </div>
   </div>
 </template>
@@ -16,9 +16,37 @@ import chatInput from '@/components/chatView/ChatInput.vue'
 export default {
   name: 'chatView',
   components: { chatItem, chatInput },
+  data() {
+    return {
+      messages: []
+    }
+  },
   props: {
+    // message: {
+    //   type: String
+    // },
+    userInfo: {
+      type: Object
+    },
     socket: {
       type: WebSocket
+    }
+  },
+  methods: {
+    rewriteMessage() {
+      // console.log('v chatitem', this.message)
+      this.socket.onmessage = res => {
+        const response = JSON.parse(res.data)
+        const { type } = response
+        if (type === 'message') {
+          console.log('type ', type, response)
+          // this.message = this.message.push(response.text)
+          this.messages.push(response.text)
+          console.log(this.messages)
+          //   renderMsg(res.data)
+          //   // upRender(response);
+        }
+      }
     }
   }
 }
