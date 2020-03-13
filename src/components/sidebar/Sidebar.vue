@@ -25,7 +25,7 @@ export default {
   },
   props: {
     userInfo: {
-      type: [Object, null]
+      type: [Array, null]
     }
   },
   data() {

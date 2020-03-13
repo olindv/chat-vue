@@ -26,7 +26,7 @@ export default {
     //   type: String
     // },
     userInfo: {
-      type: Object
+      type: Array
     },
     socket: {
       type: WebSocket

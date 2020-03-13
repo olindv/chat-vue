@@ -24,11 +24,12 @@ export default {
     return {
       isAuthorized: false,
       socket: null,
-      userInfo: {
-        userName: null,
-        userNick: null,
-        userPhoto: ''
-      }
+      userInfo: []
+      // {
+      //   userName: null,
+      //   userNick: null,
+      //   userPhoto: ''
+      // }
     }
   },
   methods: {
@@ -43,11 +44,24 @@ export default {
         // sendInfoOnServer(ws)
         // initData(ws)
         this.togglePopup()
-        this.userInfo.userName = userDetails.name
-        this.userInfo.userNick = userDetails.nickName
+        // this.userInfo.userName = userDetails.name
+        // this.userInfo.userNick = userDetails.nickName
+        this.userInfo.push({
+          userName: userDetails.name,
+          userNick: userDetails.nickName
+        })
+
+        const userInfo = {
+          type: 'init',
+          name: userDetails.name,
+          nick: userDetails.nickName
+          // photo: user.photo
+        }
+        this.socket.send(JSON.stringify(userInfo))
       }
 
       this.socket.onmessage = res => {
+        console.log('in onmessage')
         // const response = JSON.parse(res.data)
         // const { type, users } = response
         // if (type === 'initData') {

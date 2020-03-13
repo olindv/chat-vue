@@ -89,7 +89,7 @@ server.on('connection', ws => {
         }
       })
     }
-
+    console.log(userElem)
     // else if (msg.type === 'message') {
     //     clients.saveMessage(msg.nick, msg.text, msg.name);
     //     server.clients.forEach(client => {

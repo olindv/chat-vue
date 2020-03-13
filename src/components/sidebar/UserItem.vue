@@ -15,7 +15,7 @@ export default {
   components: {},
   props: {
     userInfo: {
-      type: [Object, null]
+      type: [Array, null]
     }
   }
 }

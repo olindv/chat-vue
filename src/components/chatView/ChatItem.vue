@@ -13,6 +13,7 @@
         <span class="text">{{message}}</span>
       </div>
     </li>
+    <pre>{{userInfo}}</pre>
   </ul>
 </template>
 
@@ -25,7 +26,7 @@ export default {
       type: Array
     },
     userInfo: {
-      type: Object
+      type: Array
     }
   },
   methods: {}
